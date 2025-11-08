@@ -1,4 +1,7 @@
 # VelyraUtils
+![Ubuntu Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-ubuntu)
+![Windows Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-windows)
+
 C++ utils for Velyra projects.
 
 ## Installation
