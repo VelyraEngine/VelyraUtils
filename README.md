@@ -1,6 +1,7 @@
 # VelyraUtils
-![Ubuntu Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-ubuntu)
-![Windows Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-windows)
+## Build Status:
+- ** Ubuntu (GCC)**: ![Ubuntu Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-ubuntu)
+- ** Windows (MSVC)**: ![Windows Build](https://github.com/VelyraEngine/VelyraUtils/actions/workflows/main.yml/badge.svg?branch=main&job=build-windows)
 
 C++ utils for Velyra projects.
 
