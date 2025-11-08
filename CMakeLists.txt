@@ -8,12 +8,22 @@ fetch_spdlog()
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
     include/VelyraUtils/Logging.hpp
+    include/VelyraUtils/VelyraEnum.hpp
+    include/VelyraUtils/ExportUtils.hpp
+    include/VelyraUtils/TypeTraits.hpp
+    include/VelyraUtils/PlatformDetection.hpp
+    include/VelyraUtils/Math.hpp
+
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
+    include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
+
+    include/VelyraUtils/Types/Types.hpp
+    include/VelyraUtils/Types/SymbolicTypes.hpp
 )
 
 set(velyra_utils_src
-    src/VelyraUtils.cpp
     src/Logging.cpp
+    src/Types/SymbolicTypes.cpp
 )
 
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
@@ -22,9 +32,8 @@ target_link_libraries(VelyraUtils PUBLIC spdlog)
 
 set(velyra_utils_test_src
     test/TestLogging.cpp
-    include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
     test/TestvelyraUtils.cpp
-
+    test/TestVelyraEnum.cpp
 )
 
 if (BUILD_TESTING)
