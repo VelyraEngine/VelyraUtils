@@ -8,6 +8,7 @@ fetch_spdlog()
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
     include/VelyraUtils/Logging.hpp
+    include/VelyraUtils/DevUtils/MacroExpansion.hpp
 )
 
 set(velyra_utils_src
@@ -21,6 +22,8 @@ target_link_libraries(VelyraUtils PUBLIC spdlog)
 
 set(velyra_utils_test_src
     test/TestLogging.cpp
+    include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
+    test/TestvelyraUtils.cpp
 
 )
 
