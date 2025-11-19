@@ -16,6 +16,7 @@ set(velyra_utils_headers
 
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
+    include/VelyraUtils/DevUtils/Conditions.hpp
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
@@ -36,6 +37,8 @@ set(velyra_utils_test_src
     test/TestVelyraEnum.cpp
 
     test/Types/TestSymbolicTypes.cpp
+
+    test/DevUtils/TestConditions.cpp
 )
 
 if (BUILD_TESTING)
