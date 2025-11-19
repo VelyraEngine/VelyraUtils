@@ -28,5 +28,18 @@ namespace Velyra::Utils {
         }
     }
 
+    U32 getTypeSize(const VL_SCALAR_TYPE type) {
+        const auto underlyingType = static_cast<VL_TYPE>((type >> 4) << 4);
+        return getTypeSize(underlyingType) * getComponentCount(type);
+    }
+
+    U32 getComponentCount(const VL_TYPE type) {
+        return 1; // Normal types only consist of 1 element
+    }
+
+    U32 getComponentCount(const VL_SCALAR_TYPE type) {
+        const U8 trunacted = static_cast<U8>(type) & 0x0F;
+        return trunacted + 1; // We add the 1 since 0000 bits encode element count of 1 (1111 bits encode 16)
+    }
 
 }

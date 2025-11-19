@@ -113,6 +113,14 @@ namespace Velyra::Utils {
     U32 VL_API getTypeSize(VL_TYPE type);
     U32 VL_API getTypeSize(VL_SCALAR_TYPE type);
 
+    /**
+     * @brief Returns the number of components in a VL_TYPE or VL_SCALAR_TYPE. For normal types this is always 1.
+     * @param type VL_TYPE or VL_SCALAR_TYPE
+     * @return Number of components
+     */
+    U32 VL_API getComponentCount(VL_TYPE type);
+    U32 VL_API getComponentCount(VL_SCALAR_TYPE type);
+
 
 
 }

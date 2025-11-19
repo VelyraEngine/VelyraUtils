@@ -34,6 +34,8 @@ set(velyra_utils_test_src
     test/TestLogging.cpp
     test/TestvelyraUtils.cpp
     test/TestVelyraEnum.cpp
+
+    test/Types/TestSymbolicTypes.cpp
 )
 
 if (BUILD_TESTING)
