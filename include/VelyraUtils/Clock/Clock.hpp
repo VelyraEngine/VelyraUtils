@@ -21,7 +21,7 @@ namespace Velyra {
         return std::chrono::system_clock::now();
     }
 
-    inline TimePoint timeFromEpoch(const u64 time) {
+    inline TimePoint timeFromEpoch(const U64 time) {
         return TimePoint(Duration{static_cast<double>(time)});
     }
 
