@@ -7,6 +7,8 @@
 #include <VelyraUtils/Types/Types.hpp>
 #include <VelyraUtils/Types/SymbolicTypes.hpp>
 
+#include <VelyraUtils/DevUtils/Conditions.hpp>
+
 namespace Velyra::Utils {
 
 }

@@ -20,6 +20,8 @@ set(velyra_utils_headers
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
+
+    include/VelyraUtils/Clock/Clock.hpp
 )
 
 set(velyra_utils_src
