@@ -30,6 +30,7 @@ set(velyra_utils_src
 )
 
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
+velyra_target_set_compile_flags(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
 target_link_libraries(VelyraUtils PUBLIC spdlog)
 

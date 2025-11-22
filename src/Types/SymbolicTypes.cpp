@@ -33,7 +33,7 @@ namespace Velyra::Utils {
         return getTypeSize(underlyingType) * getComponentCount(type);
     }
 
-    U32 getComponentCount(const VL_TYPE type) {
+    U32 getComponentCount(const VL_TYPE) {
         return 1; // Normal types only consist of 1 element
     }
 
