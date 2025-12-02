@@ -51,3 +51,4 @@ namespace Velyra::Utils::Detail {
 #endif
 
 #define VL_THROW(msg, ...) throw std::runtime_error(fmt::format(fmt::runtime(msg), ##__VA_ARGS__))
+#define VL_NOT_IMPLEMENTED() VL_THROW("Function not yet implemented: {} at {}:{}", VL_FUNC, VL_FILE, VL_LINE)

@@ -31,3 +31,16 @@ TEST_F(TestConditions, FormattedThrow) {
     }
     EXPECT_TRUE(catched);
 }
+
+TEST_F(TestConditions, NotImplementedThrow) {
+    bool catched = false;
+    try {
+        VL_NOT_IMPLEMENTED();
+    } catch (const std::runtime_error& e) {
+        catched = true;
+        std::string expectedStart = "Function not yet implemented: ";
+        std::string actualMessage = e.what();
+        EXPECT_EQ(actualMessage.substr(0, expectedStart.size()), expectedStart);
+    }
+    EXPECT_TRUE(catched);
+}
