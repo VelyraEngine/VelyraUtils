@@ -13,6 +13,8 @@ set(velyra_utils_headers
     include/VelyraUtils/TypeTraits.hpp
     include/VelyraUtils/PlatformDetection.hpp
     include/VelyraUtils/Math.hpp
+    include/VelyraUtils/CpuFeatures.hpp
+
 
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
@@ -26,6 +28,7 @@ set(velyra_utils_headers
 
 set(velyra_utils_src
     src/Logging.cpp
+    src/CpuFeatures.cpp
     src/Types/SymbolicTypes.cpp
 )
 
