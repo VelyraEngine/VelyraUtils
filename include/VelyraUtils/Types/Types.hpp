@@ -30,12 +30,12 @@ namespace Velyra {
 
     template<typename T, typename... Args>
     UP<T> createUP(Args&&... args){
-        return std::make_unique<T>(args...);
+        return std::make_unique<T>(std::forward<Args>(args)...);
     }
 
     template<typename T, typename... Args>
     SP<T> createSP(Args&&... args){
-        return std::make_shared<T>(args...);
+        return std::make_shared<T>(std::forward<Args>(args)...);
     }
 
 }

@@ -36,7 +36,7 @@ namespace Velyra::Utils::Detail {
                 conditionType, #condition, VL_FILE, VL_FUNC, VL_LINE,      \
                 fmt::string_view(msg), ##__VA_ARGS__);                     \
         }                                                                  \
-    } while (false)
+    } while (false);
 
 #define VL_ASSERT(condition, msg, ...) VL_INTERNAL_ASSERT("ASSERT", condition, msg, ##__VA_ARGS__)
 #define VL_PRECONDITION(condition, msg, ...) VL_INTERNAL_ASSERT("PRECONDITION", condition, msg, ##__VA_ARGS__)
