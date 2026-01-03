@@ -42,4 +42,9 @@ namespace Velyra::Utils {
         return trunacted + 1; // We add the 1 since 0000 bits encode element count of 1 (1111 bits encode 16)
     }
 
+    VL_TYPE getBaseType(const VL_SCALAR_TYPE type) {
+        return static_cast<VL_TYPE>((type >> 4) << 4);
+    }
+
+
 }

@@ -197,3 +197,82 @@ TEST_F(TestSymbolicTypes, GetComponentCountScalar) {
     EXPECT_EQ(getComponentCount(VL_FLOAT64_3X3), 9);
     EXPECT_EQ(getComponentCount(VL_FLOAT64_4X4), 16);
 }
+
+TEST_F(TestSymbolicTypes, GetBaseType) {
+    EXPECT_EQ(getBaseType(VL_UINT8_1), VL_UINT8);
+    EXPECT_EQ(getBaseType(VL_UINT8_2), VL_UINT8);
+    EXPECT_EQ(getBaseType(VL_UINT8_3), VL_UINT8);
+    EXPECT_EQ(getBaseType(VL_UINT8_4), VL_UINT8);
+    EXPECT_EQ(getBaseType(VL_UINT8_3X3), VL_UINT8);
+    EXPECT_EQ(getBaseType(VL_UINT8_4X4), VL_UINT8);
+
+    EXPECT_EQ(getBaseType(VL_INT8_1), VL_INT8);
+    EXPECT_EQ(getBaseType(VL_INT8_2), VL_INT8);
+    EXPECT_EQ(getBaseType(VL_INT8_3), VL_INT8);
+    EXPECT_EQ(getBaseType(VL_INT8_4), VL_INT8);
+    EXPECT_EQ(getBaseType(VL_INT8_3X3), VL_INT8);
+    EXPECT_EQ(getBaseType(VL_INT8_4X4), VL_INT8);
+
+    EXPECT_EQ(getBaseType(VL_UINT16_1), VL_UINT16);
+    EXPECT_EQ(getBaseType(VL_UINT16_2), VL_UINT16);
+    EXPECT_EQ(getBaseType(VL_UINT16_3), VL_UINT16);
+    EXPECT_EQ(getBaseType(VL_UINT16_4), VL_UINT16);
+    EXPECT_EQ(getBaseType(VL_UINT16_3X3), VL_UINT16);
+    EXPECT_EQ(getBaseType(VL_UINT16_4X4), VL_UINT16);
+
+    EXPECT_EQ(getBaseType(VL_INT16_1), VL_INT16);
+    EXPECT_EQ(getBaseType(VL_INT16_2), VL_INT16);
+    EXPECT_EQ(getBaseType(VL_INT16_3), VL_INT16);
+    EXPECT_EQ(getBaseType(VL_INT16_4), VL_INT16);
+    EXPECT_EQ(getBaseType(VL_INT16_3X3), VL_INT16);
+    EXPECT_EQ(getBaseType(VL_INT16_4X4), VL_INT16);
+
+    EXPECT_EQ(getBaseType(VL_UINT32_1), VL_UINT32);
+    EXPECT_EQ(getBaseType(VL_UINT32_2), VL_UINT32);
+    EXPECT_EQ(getBaseType(VL_UINT32_3), VL_UINT32);
+    EXPECT_EQ(getBaseType(VL_UINT32_4), VL_UINT32);
+    EXPECT_EQ(getBaseType(VL_UINT32_3X3), VL_UINT32);
+    EXPECT_EQ(getBaseType(VL_UINT32_4X4), VL_UINT32);
+
+    EXPECT_EQ(getBaseType(VL_INT32_1), VL_INT32);
+    EXPECT_EQ(getBaseType(VL_INT32_2), VL_INT32);
+    EXPECT_EQ(getBaseType(VL_INT32_3), VL_INT32);
+    EXPECT_EQ(getBaseType(VL_INT32_4), VL_INT32);
+    EXPECT_EQ(getBaseType(VL_INT32_3X3), VL_INT32);
+    EXPECT_EQ(getBaseType(VL_INT32_4X4), VL_INT32);
+
+    EXPECT_EQ(getBaseType(VL_UINT64_1), VL_UINT64);
+    EXPECT_EQ(getBaseType(VL_UINT64_2), VL_UINT64);
+    EXPECT_EQ(getBaseType(VL_UINT64_3), VL_UINT64);
+    EXPECT_EQ(getBaseType(VL_UINT64_4), VL_UINT64);
+    EXPECT_EQ(getBaseType(VL_UINT64_3X3), VL_UINT64);
+    EXPECT_EQ(getBaseType(VL_UINT64_4X4), VL_UINT64);
+
+    EXPECT_EQ(getBaseType(VL_INT64_1), VL_INT64);
+    EXPECT_EQ(getBaseType(VL_INT64_2), VL_INT64);
+    EXPECT_EQ(getBaseType(VL_INT64_3), VL_INT64);
+    EXPECT_EQ(getBaseType(VL_INT64_4), VL_INT64);
+    EXPECT_EQ(getBaseType(VL_INT64_3X3), VL_INT64);
+    EXPECT_EQ(getBaseType(VL_INT64_4X4), VL_INT64);
+
+    EXPECT_EQ(getBaseType(VL_FLOAT16_1), VL_FLOAT16);
+    EXPECT_EQ(getBaseType(VL_FLOAT16_2), VL_FLOAT16);
+    EXPECT_EQ(getBaseType(VL_FLOAT16_3), VL_FLOAT16);
+    EXPECT_EQ(getBaseType(VL_FLOAT16_4), VL_FLOAT16);
+    EXPECT_EQ(getBaseType(VL_FLOAT16_3X3), VL_FLOAT16);
+    EXPECT_EQ(getBaseType(VL_FLOAT16_4X4), VL_FLOAT16);
+
+    EXPECT_EQ(getBaseType(VL_FLOAT32_1), VL_FLOAT32);
+    EXPECT_EQ(getBaseType(VL_FLOAT32_2), VL_FLOAT32);
+    EXPECT_EQ(getBaseType(VL_FLOAT32_3), VL_FLOAT32);
+    EXPECT_EQ(getBaseType(VL_FLOAT32_4), VL_FLOAT32);
+    EXPECT_EQ(getBaseType(VL_FLOAT32_3X3), VL_FLOAT32);
+    EXPECT_EQ(getBaseType(VL_FLOAT32_4X4), VL_FLOAT32);
+
+    EXPECT_EQ(getBaseType(VL_FLOAT64_1), VL_FLOAT64);
+    EXPECT_EQ(getBaseType(VL_FLOAT64_2), VL_FLOAT64);
+    EXPECT_EQ(getBaseType(VL_FLOAT64_3), VL_FLOAT64);
+    EXPECT_EQ(getBaseType(VL_FLOAT64_4), VL_FLOAT64);
+    EXPECT_EQ(getBaseType(VL_FLOAT64_3X3), VL_FLOAT64);
+    EXPECT_EQ(getBaseType(VL_FLOAT64_4X4), VL_FLOAT64);
+}

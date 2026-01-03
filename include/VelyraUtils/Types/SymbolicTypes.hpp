@@ -121,6 +121,5 @@ namespace Velyra::Utils {
     U32 VL_API getComponentCount(VL_TYPE type);
     U32 VL_API getComponentCount(VL_SCALAR_TYPE type);
 
-
-
+    VL_TYPE VL_API getBaseType(VL_SCALAR_TYPE type);
 }
