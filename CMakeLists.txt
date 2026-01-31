@@ -5,6 +5,7 @@ include(VelyraBuildUtils/VelyraBuildUtils.cmake)
 
 fetch_spdlog()
 
+
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
     include/VelyraUtils/Logging.hpp
@@ -24,12 +25,18 @@ set(velyra_utils_headers
     include/VelyraUtils/Types/SymbolicTypes.hpp
 
     include/VelyraUtils/Clock/Clock.hpp
+
+    include/VelyraUtils/Threading/Worker.hpp
+    include/VelyraUtils/Threading/ThreadPool.hpp
 )
 
 set(velyra_utils_src
     src/Logging.cpp
     src/CpuFeatures.cpp
     src/Types/SymbolicTypes.cpp
+
+    src/Threading/Worker.cpp
+    src/Threading/ThreadPool.cpp
 )
 
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
@@ -45,6 +52,8 @@ set(velyra_utils_test_src
     test/Types/TestSymbolicTypes.cpp
 
     test/DevUtils/TestConditions.cpp
+
+    test/Threading/TestThreading.cpp
 )
 
 if (BUILD_TESTING)

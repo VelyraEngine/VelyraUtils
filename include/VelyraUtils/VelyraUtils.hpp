@@ -8,6 +8,8 @@
 #include <VelyraUtils/Types/SymbolicTypes.hpp>
 
 #include <VelyraUtils/DevUtils/Conditions.hpp>
+#include <VelyraUtils/Threading/Worker.hpp>
+#include <VelyraUtils/Threading/ThreadPool.hpp>
 
 namespace Velyra::Utils {
 
