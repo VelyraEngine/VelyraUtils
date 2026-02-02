@@ -19,14 +19,36 @@ namespace Velyra {
     public:
         View() = default;
 
-        explicit View(const UP<T>& ptr):
+        View(std::nullptr_t) : m_View(nullptr) {}
+
+        /**
+         * @brief Constructor is non-explicit to allow easy conversions from UP<T>, in this case
+         *        implicit conversion is cheap so it is not bad here (and it makes sense syntactically).
+         * @param ptr
+         */
+        View(const UP<T>& ptr) :
         m_View(ptr.get()){}
+
+        View& operator=(std::nullptr_t) {
+            m_View = nullptr;
+            return *this;
+        }
 
         T* get() const {
             return m_View;
         }
 
+        T* operator->() const {
+            return m_View;
+        }
 
+        bool operator==(std::nullptr_t) const {
+            return m_View == nullptr;
+        }
+
+        bool operator!=(std::nullptr_t) const {
+            return m_View != nullptr;
+        }
 
     private:
         T* m_View = nullptr;
