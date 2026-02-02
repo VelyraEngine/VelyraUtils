@@ -16,7 +16,6 @@ set(velyra_utils_headers
     include/VelyraUtils/Math.hpp
     include/VelyraUtils/CpuFeatures.hpp
 
-
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
     include/VelyraUtils/DevUtils/Conditions.hpp
@@ -28,6 +27,8 @@ set(velyra_utils_headers
 
     include/VelyraUtils/Threading/Worker.hpp
     include/VelyraUtils/Threading/ThreadPool.hpp
+
+    include/VelyraUtils/Memory/View.hpp
 )
 
 set(velyra_utils_src
@@ -54,6 +55,8 @@ set(velyra_utils_test_src
     test/DevUtils/TestConditions.cpp
 
     test/Threading/TestThreading.cpp
+
+    test/Memory/TestView.cpp
 )
 
 if (BUILD_TESTING)

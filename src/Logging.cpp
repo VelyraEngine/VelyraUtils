@@ -5,8 +5,6 @@
 
 namespace Velyra::Utils {
 
-
-
     LogPtr getLogger(const std::string& name) {
         LogPtr logger = spdlog::get(name);
         if (!logger) {
@@ -17,7 +15,7 @@ namespace Velyra::Utils {
 #if defined(VL_DEBUG)
             logger->set_level(spdlog::level::trace);
 #else
-            logger->set_level(spdlog::level::error);
+            logger->set_level(spdlog::level::err);
     #endif
 
             spdlog::register_logger(logger);
