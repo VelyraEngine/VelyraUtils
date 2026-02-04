@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <VelyraUtils/DevUtils/PrivateMemberGetter.hpp>
-#include <VelyraUtils/TypeTraits.hpp>
+#include <VelyraUtils/Concepts.hpp>
 
 using namespace Velyra;
 
@@ -32,8 +32,4 @@ TEST_F(TestVelyraUtils, VL_TESTING_macro) {
 TEST_F(TestVelyraUtils, PrivateMember) {
     const GetPrivateMember example;
     EXPECT_EQ(example.get_m_PrivateInt(), 5);
-}
-
-TEST_F(TestVelyraUtils, AlwaysFalse) {
-    EXPECT_FALSE(Utils::always_false<int>::value);
 }

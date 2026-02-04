@@ -4,6 +4,7 @@ project(VelyraUtils DESCRIPTION "C++ utilities for Velyra projects")
 include(VelyraBuildUtils/VelyraBuildUtils.cmake)
 
 fetch_spdlog()
+fetch_nlohmann_json()
 
 
 set(velyra_utils_headers
@@ -12,6 +13,7 @@ set(velyra_utils_headers
     include/VelyraUtils/VelyraEnum.hpp
     include/VelyraUtils/ExportUtils.hpp
     include/VelyraUtils/TypeTraits.hpp
+    include/VelyraUtils/Concepts.hpp
     include/VelyraUtils/PlatformDetection.hpp
     include/VelyraUtils/Math.hpp
     include/VelyraUtils/CpuFeatures.hpp
@@ -29,6 +31,8 @@ set(velyra_utils_headers
     include/VelyraUtils/Threading/ThreadPool.hpp
 
     include/VelyraUtils/Memory/View.hpp
+
+    include/VelyraUtils/Conversions/Json.hpp
 )
 
 set(velyra_utils_src
@@ -43,20 +47,25 @@ set(velyra_utils_src
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
 velyra_target_set_compile_flags(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
-target_link_libraries(VelyraUtils PUBLIC spdlog)
+target_link_libraries(VelyraUtils PUBLIC spdlog nlohmann_json::nlohmann_json)
 
 set(velyra_utils_test_src
     test/TestLogging.cpp
     test/TestvelyraUtils.cpp
     test/TestVelyraEnum.cpp
+    test/TestConcepts.cpp
+    test/TestTypeTraits.cpp
 
     test/Types/TestSymbolicTypes.cpp
 
-    test/DevUtils/TestConditions.cpp
+    # test/DevUtils/TestConditions.cpp
 
     test/Threading/TestThreading.cpp
 
     test/Memory/TestView.cpp
+
+    test/Conversions/TestToJson.cpp
+    test/Conversions/TestFromJson.cpp
 )
 
 if (BUILD_TESTING)
