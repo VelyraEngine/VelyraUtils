@@ -1,6 +1,8 @@
-#include <deque>
 #include <gtest/gtest.h>
+#include <deque>
 #include <VelyraUtils/Conversions/Json.hpp>
+
+#include "../Utils.hpp"
 
 using namespace Velyra;
 using namespace Velyra::Utils;
@@ -35,6 +37,12 @@ TEST_F(TestToJson, MemberToJson) {
     EXPECT_EQ(j, toJson<ConversionData>(data));
 }
 
+TEST_F(TestToJson, VlEnum) {
+    SHAPE someShape = SHAPE_TRIANGLE;
+    const nlohmann::json expected = "SHAPE_TRIANGLE";
+    EXPECT_EQ(toJson<SHAPE>(someShape), expected);
+}
+
 TEST_F(TestToJson, Arrays) {
     const std::vector<double> vd = {1.0, 2.0, 3.0};
     const nlohmann::json vdj = {1.0, 2.0, 3.0};
@@ -57,4 +65,17 @@ TEST_F(TestToJson, Arrays) {
   ]
 )");
     EXPECT_EQ(toJson<std::deque<ConversionData>>(dc), dcj);
+}
+
+TEST_F(TestToJson, Maps) {
+    const std::map<std::string, int> msi = {
+        {"one", 1},
+        {"two", 2}
+    };
+    const nlohmann::json msij = {
+        {"one", 1},
+        {"two", 2}
+    };
+    const nlohmann::json converted = toJson<std::map<std::string, int>>(msi);
+    EXPECT_EQ(converted, msij);
 }

@@ -1,27 +1,11 @@
 #include <gtest/gtest.h>
-#include <VelyraUtils/VelyraEnum.hpp>
 #include <VelyraUtils/Logging.hpp>
 
-VL_ENUM(COLOR, int,
-        COLOR_UNKNOWN = 0,
-        COLOR_RED = 1,
-        COLOR_GREEN = 2,
-        COLOR_BLUE = 4,
-        COLOR_YELLOW = 8
-);
-
-VL_ENUM(SHAPE, int,
-    SHAPE_UNKNOWN,
-    SHAPE_CIRCLE,
-    SHAPE_SQUARE,
-    SHAPE_TRIANGLE
-    );
+#include "Utils.hpp"
 
 using namespace Velyra;
 
-class TestVlEnum: public ::testing::Test {
-
-};
+class TestVlEnum: public ::testing::Test {};
 
 TEST_F(TestVlEnum, MyColorsToString) {
     EXPECT_EQ(toString(COLOR_UNKNOWN), "COLOR_UNKNOWN");

@@ -184,6 +184,9 @@ template<typename T>
 struct is_vl_enum: std::false_type {};
 
 template<typename T>
+concept IsVlEnum = is_vl_enum<T>::value;
+
+template<typename T>
 T fromString(const std::string& value){
     static_assert(is_vl_enum<T>::value, "Type is not an VL_ENUM");
     throw std::runtime_error("fromString not implemented for this type");

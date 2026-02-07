@@ -21,6 +21,7 @@ set(velyra_utils_headers
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
     include/VelyraUtils/DevUtils/Conditions.hpp
+    include/VelyraUtils/DevUtils/JsonSerializer.hpp
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
@@ -50,6 +51,8 @@ target_include_directories(VelyraUtils PUBLIC include)
 target_link_libraries(VelyraUtils PUBLIC spdlog nlohmann_json::nlohmann_json)
 
 set(velyra_utils_test_src
+    test/Utils.hpp
+
     test/TestLogging.cpp
     test/TestvelyraUtils.cpp
     test/TestVelyraEnum.cpp
@@ -59,6 +62,7 @@ set(velyra_utils_test_src
     test/Types/TestSymbolicTypes.cpp
 
     # test/DevUtils/TestConditions.cpp
+    test/DevUtils/TestJsonSerializer.cpp
 
     test/Threading/TestThreading.cpp
 
