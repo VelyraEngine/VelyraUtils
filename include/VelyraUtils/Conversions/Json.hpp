@@ -25,8 +25,8 @@ namespace Velyra::Utils {
         }
         else if constexpr (MapLike<T>) {
             nlohmann::json j = nlohmann::json::object();
-            for (const auto& [key, value]: value) {
-                j[toJson<decltype(key)>(key)] = toJson<decltype(value)>(value);
+            for (const auto& [key, v]: value) {
+                j[toJson<decltype(key)>(key)] = toJson<decltype(v)>(v);
             }
             return j;
         }
