@@ -23,17 +23,17 @@ namespace Velyra::Utils {
         else if constexpr (nlohmann::detail::is_compatible_type<nlohmann::json, T>::value) {
             return value;
         }
-        else if constexpr (ArrayLike<T>) {
-            nlohmann::json j = nlohmann::json::array();
-            for (const auto& element: value) {
-                j.push_back(toJson<decltype(element)>(element));
-            }
-            return j;
-        }
         else if constexpr (MapLike<T>) {
             nlohmann::json j = nlohmann::json::object();
             for (const auto& [key, v]: value) {
                 j[toJson<decltype(key)>(key)] = toJson<decltype(v)>(v);
+            }
+            return j;
+        }
+        else if constexpr (ArrayLike<T>) {
+            nlohmann::json j = nlohmann::json::array();
+            for (const auto& element: value) {
+                j.push_back(toJson<decltype(element)>(element));
             }
             return j;
         }
@@ -65,19 +65,19 @@ namespace Velyra::Utils {
                 return json.get<T>();
             }
         }
-        else if constexpr (ArrayLike<T>) {
-            T container;
-            for (const auto& element: json) {
-                container.push_back(fromJson<typename T::value_type>(element));
-            }
-            return container;
-        }
         else if constexpr (MapLike<T>) {
             T container;
             for (auto it = json.begin(); it != json.end(); ++it) {
                 auto key = fromJson<typename T::key_type>(it.key());
                 auto value = fromJson<typename T::mapped_type>(it.value());
                 container[key] = value;
+            }
+            return container;
+        }
+        else if constexpr (ArrayLike<T>) {
+            T container;
+            for (const auto& element: json) {
+                container.push_back(fromJson<typename T::value_type>(element));
             }
             return container;
         }
