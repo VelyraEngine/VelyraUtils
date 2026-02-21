@@ -45,7 +45,7 @@ namespace Velyra::Utils {
             return fromString<T>(json.get<std::string>());
         }
         else if constexpr (nlohmann::detail::is_compatible_type<nlohmann::json, T>::value) {
-            if constexpr (nlohmann::detail::is_compatible_reference_type<nlohmann::json, T>::value) {
+            if constexpr (std::is_reference_v<T>) {
                 return json.get_ref<T>();
             }
             else {

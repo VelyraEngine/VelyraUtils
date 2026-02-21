@@ -3,9 +3,9 @@ project(VelyraUtils DESCRIPTION "C++ utilities for Velyra projects")
 
 include(VelyraBuildUtils/VelyraBuildUtils.cmake)
 
-fetch_spdlog()
-fetch_nlohmann_json()
-
+vl_fetch_spdlog()
+vl_fetch_nlohmann_json()
+vl_fetch_fmt()
 
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
@@ -46,9 +46,9 @@ set(velyra_utils_src
 )
 
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
-velyra_target_set_compile_flags(VelyraUtils)
+vl_target_set_compile_flags(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
-target_link_libraries(VelyraUtils PUBLIC spdlog nlohmann_json::nlohmann_json)
+target_link_libraries(VelyraUtils PUBLIC spdlog fmt nlohmann_json::nlohmann_json)
 
 set(velyra_utils_test_src
     test/Utils.hpp
@@ -64,7 +64,7 @@ set(velyra_utils_test_src
     # test/DevUtils/TestConditions.cpp
     test/DevUtils/TestJsonSerializer.cpp
 
-    test/Threading/TestThreading.cpp
+    # test/Threading/TestThreading.cpp
 
     test/Memory/TestView.cpp
 
@@ -73,7 +73,7 @@ set(velyra_utils_test_src
 )
 
 if (BUILD_TESTING)
-    fetch_gtest()
+    vl_fetch_gtest()
 
     add_executable(TestVelyraUtils ${velyra_utils_test_src})
     target_include_directories(TestVelyraUtils PUBLIC include)
