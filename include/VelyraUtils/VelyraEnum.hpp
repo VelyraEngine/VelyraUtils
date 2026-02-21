@@ -6,8 +6,7 @@
 #include <exception>
 #include <vector>
 #include <type_traits>
-#include <fmt/core.h>
-#include <fmt/format.h>
+#include <spdlog/fmt/fmt.h>
 
 #define VA_COUNT_IMPL( \
 _1,_2,_3,_4,_5,_6,_7,_8,_9,_10, \

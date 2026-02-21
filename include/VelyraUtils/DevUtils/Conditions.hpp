@@ -1,8 +1,7 @@
 #pragma once
 
 #include <VelyraUtils/PlatformDetection.hpp>
-#include <fmt/format.h>
-#include <fmt/printf.h>
+#include <spdlog/fmt/fmt.h>
 #include <string>
 
 namespace Velyra::Utils::Detail {

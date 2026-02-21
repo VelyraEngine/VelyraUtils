@@ -4,8 +4,8 @@ project(VelyraUtils DESCRIPTION "C++ utilities for Velyra projects")
 include(VelyraBuildUtils/VelyraBuildUtils.cmake)
 
 vl_fetch_spdlog()
+
 vl_fetch_nlohmann_json()
-vl_fetch_fmt()
 
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
@@ -48,7 +48,7 @@ set(velyra_utils_src
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
 vl_target_set_compile_flags(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
-target_link_libraries(VelyraUtils PUBLIC spdlog fmt nlohmann_json::nlohmann_json)
+target_link_libraries(VelyraUtils PUBLIC spdlog::spdlog nlohmann_json::nlohmann_json)
 
 set(velyra_utils_test_src
     test/Utils.hpp
