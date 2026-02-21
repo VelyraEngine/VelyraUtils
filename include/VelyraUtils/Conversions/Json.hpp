@@ -5,12 +5,19 @@
 #include <VelyraUtils/TypeTraits.hpp>
 #include <VelyraUtils/Concepts.hpp>
 #include <VelyraUtils/VelyraEnum.hpp>
+#include <VelyraUtils/Conversions/String.hpp>
 
 namespace Velyra::Utils {
 
     template<typename T>
     nlohmann::json toJson(const T& value) {
         if constexpr (IsVlEnum<T>) {
+            return toString(value);
+        }
+        else if constexpr (std::is_same_v<T, TimePoint>) {
+            return toString(value);
+        }
+        else if constexpr (std::is_same_v<T, Duration>) {
             return toString(value);
         }
         else if constexpr (nlohmann::detail::is_compatible_type<nlohmann::json, T>::value) {
@@ -43,6 +50,12 @@ namespace Velyra::Utils {
     T fromJson(const nlohmann::json& json) {
         if constexpr (IsVlEnum<T>) {
             return fromString<T>(json.get<std::string>());
+        }
+        else if constexpr (std::is_same_v<T, TimePoint>) {
+            return fromString<TimePoint>(json.get<std::string>());
+        }
+        else if constexpr (std::is_same_v<T, Duration>) {
+            return fromString<Duration>(json.get<std::string>());
         }
         else if constexpr (nlohmann::detail::is_compatible_type<nlohmann::json, T>::value) {
             if constexpr (std::is_reference_v<T>) {

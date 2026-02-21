@@ -6,7 +6,7 @@
 #include <exception>
 #include <vector>
 #include <type_traits>
-#include <spdlog/fmt/fmt.h>
+#include <VelyraUtils/DevUtils/Fmt.hpp>
 
 #define VA_COUNT_IMPL( \
 _1,_2,_3,_4,_5,_6,_7,_8,_9,_10, \
@@ -186,7 +186,7 @@ template<typename T>
 concept IsVlEnum = is_vl_enum<T>::value;
 
 template<typename T>
-T fromString(const std::string& value){
+T _fromString(const std::string& value){
     static_assert(is_vl_enum<T>::value, "Type is not an VL_ENUM");
     throw std::runtime_error("fromString not implemented for this type");
 }
@@ -285,7 +285,7 @@ namespace Velyra::Detail {
             Name##_StructuresGenerated = true; \
         } \
     } \
-    inline std::string toString(Name value){ \
+    inline std::string _toString(Name value){ \
         if (!Name##_detail::Name##_StructuresGenerated){ \
             Name##_detail::generateStructures(); \
         } \
@@ -296,7 +296,7 @@ namespace Velyra::Detail {
         return it->second; \
     } \
     template<> \
-    inline Name fromString<Name>(const std::string& value){ \
+    inline Name _fromString<Name>(const std::string& value){ \
         if (!Name##_detail::Name##_StructuresGenerated){ \
             Name##_detail::generateStructures(); \
         } \
@@ -313,6 +313,6 @@ namespace Velyra::Detail {
         } \
         template <typename FormatContext> \
         auto format(const Name& p, FormatContext& ctx) const -> decltype(ctx.out()) { \
-            return fmt::format_to(ctx.out(), "{}", toString(p)); \
+            return fmt::format_to(ctx.out(), "{}", _toString(p)); \
         } \
     }

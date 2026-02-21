@@ -8,6 +8,8 @@ namespace Velyra {
 
     using namespace std::chrono_literals;
 
+    static constexpr std::string_view STRING_FORMAT = "%Y-%m-%dT%H:%M:%S";
+
     using Duration = std::chrono::duration<double, std::milli>;
     using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock, Duration>;
     using SystemTimePoint = std::chrono::system_clock::time_point;

@@ -34,6 +34,8 @@ set(velyra_utils_headers
     include/VelyraUtils/Memory/View.hpp
 
     include/VelyraUtils/Conversions/Json.hpp
+    include/VelyraUtils/Conversions/String.hpp
+    include/VelyraUtils/DevUtils/Fmt.hpp
 )
 
 set(velyra_utils_src
@@ -70,6 +72,8 @@ set(velyra_utils_test_src
 
     test/Conversions/TestToJson.cpp
     test/Conversions/TestFromJson.cpp
+    test/Conversions/TestFromString.cpp
+    test/Conversions/TestToString.cpp
 )
 
 if (BUILD_TESTING)
