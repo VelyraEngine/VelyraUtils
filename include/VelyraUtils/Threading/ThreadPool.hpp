@@ -20,7 +20,7 @@ namespace Velyra::Utils {
 class VL_API ThreadPool {
 public:
     /** Create a pool with the given number of worker threads. */
-    explicit ThreadPool(Size numThreads);
+    explicit ThreadPool(Size numThreads = std::thread::hardware_concurrency());
     ~ThreadPool();
 
     ThreadPool(const ThreadPool&) = delete;
