@@ -27,7 +27,7 @@ namespace Velyra::Utils {
 
             // Convert to UTC tm
             std::tm tm{};
-#if defined(_WIN32)
+#if defined(VL_PLATFORM_WINDOWS)
             gmtime_s(&tm, &tt);  // Windows
 #else
             gmtime_r(&tt, &tm);  // POSIX
@@ -66,7 +66,11 @@ namespace Velyra::Utils {
             if (ss.fail()) {
                 VL_THROW("Invalid time format: {}. Expected format: {}", str, STRING_FORMAT);
             }
+#if defined(VL_PLATFORM_WINDOWS)
+            const std::time_t tt = _mkgmtime(&time_info);
+#else
             const std::time_t tt = timegm(&time_info); // Parsed in Universal Time
+#endif
             return TimePoint(std::chrono::duration_cast<TimePoint::duration>(std::chrono::system_clock::from_time_t(tt).time_since_epoch()));
         }
         else if constexpr (std::is_same_v<T, Duration>) {
