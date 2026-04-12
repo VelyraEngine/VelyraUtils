@@ -87,4 +87,12 @@ TEST_F(TestFromJson, Maps) {
     };
     const auto result = fromJson<std::map<std::string, int>>(j);
     EXPECT_EQ(result, expected);
+
+    // Test unordered_map as well
+    const std::unordered_map<std::string, int> expectedUnordered = {
+        {"one", 1},
+        {"two", 2}
+    };
+    const auto resultUnordered = fromJson<std::unordered_map<std::string, int>>(j);
+    EXPECT_EQ(resultUnordered, expectedUnordered);
 }

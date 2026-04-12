@@ -31,8 +31,8 @@ namespace Velyra::Utils {
 
     template<typename T>
     concept MapLike = requires {
-        T::key_type;
-        T::mapped_type;
+        typename T::key_type;
+        typename T::mapped_type;
     };
 
     template<typename T>
