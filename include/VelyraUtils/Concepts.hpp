@@ -30,9 +30,11 @@ namespace Velyra::Utils {
     concept JsonSerializable = HasToJson<T> && HasFromJson<T>;
 
     template<typename T>
-    concept MapLike = requires {
-        typename T::key_type;
+    concept MapLike =
+    std::ranges::range<T> &&
+    requires(T t, typename T::key_type k) {
         typename T::mapped_type;
+        { t[k] } -> std::same_as<typename T::mapped_type&>;
     };
 
     template<typename T>
