@@ -14,11 +14,19 @@ namespace Velyra::Utils::Detail {
     void jsonRead(const nlohmann::json& j, const std::string& key, T& value) {
         value = fromJson<T>(j.at(key));
     }
+
+    template<typename T>
+    void jsonReadRelaxed(const nlohmann::json& j, const std::string& key, T& value) {
+        if (j.contains(key)) {
+            value = fromJson<T>(j.at(key));
+        }
+    }
 }
 
 #define VL_JSON_OBJECT_NAME _nlohmann_json
 #define VL_TO_JSON(v1) Velyra::Utils::Detail::jsonAssign<decltype(v1)>(VL_JSON_OBJECT_NAME, #v1, v1);
 #define VL_FROM_JSON(v1) Velyra::Utils::Detail::jsonRead<decltype(v1)>(VL_JSON_OBJECT_NAME, #v1, v1);
+#define VL_FROM_JSON_RELAXED(v1) Velyra::Utils::Detail::jsonReadRelaxed<decltype(v1)>(VL_JSON_OBJECT_NAME, #v1, v1);
 
 #define VL_GENERATE_JSON_SERIALIZER(Type, ...)                     \
     nlohmann::json toJson() const {                                 \
@@ -29,4 +37,15 @@ namespace Velyra::Utils::Detail {
                                                                     \
     void fromJson(const nlohmann::json &VL_JSON_OBJECT_NAME) {  \
         VL_EXPAND(VL_APPLY(VL_FROM_JSON, __VA_ARGS__))  \
+    }
+
+#define VL_GENERATE_JSON_SERIALIZER_RELAXED(Type, ...)              \
+    nlohmann::json toJson() const {                                 \
+        nlohmann::json VL_JSON_OBJECT_NAME;                     \
+        VL_EXPAND(VL_APPLY(VL_TO_JSON, __VA_ARGS__))    \
+        return VL_JSON_OBJECT_NAME;                             \
+    }                                                               \
+                                                                    \
+    void fromJson(const nlohmann::json &VL_JSON_OBJECT_NAME) {  \
+        VL_EXPAND(VL_APPLY(VL_FROM_JSON_RELAXED, __VA_ARGS__))  \
     }
