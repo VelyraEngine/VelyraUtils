@@ -22,9 +22,11 @@ set(velyra_utils_headers
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
     include/VelyraUtils/DevUtils/Conditions.hpp
     include/VelyraUtils/DevUtils/JsonSerializer.hpp
+    include/VelyraUtils/DevUtils/Fmt.hpp
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
+    include/VelyraUtils/Types/Color.hpp
 
     include/VelyraUtils/Clock/Clock.hpp
 
@@ -35,13 +37,14 @@ set(velyra_utils_headers
 
     include/VelyraUtils/Conversions/Json.hpp
     include/VelyraUtils/Conversions/String.hpp
-    include/VelyraUtils/DevUtils/Fmt.hpp
 )
 
 set(velyra_utils_src
     src/Logging.cpp
     src/CpuFeatures.cpp
+
     src/Types/SymbolicTypes.cpp
+    src/Types/Color.cpp
 
     src/Threading/Worker.cpp
     src/Threading/ThreadPool.cpp
