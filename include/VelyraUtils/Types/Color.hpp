@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VelyraUtils/Types/Types.hpp>
+#include <VelyraUtils/Math.hpp>
 
 namespace Velyra::Utils {
 
@@ -14,11 +14,24 @@ namespace Velyra::Utils {
 
         Color() = default;
 
-        Color(float r_, float g_, float b_, float a_ = 1.0f);
+        Color(const float r_, const float g_, const float b_,
+              const float a_ = 1.0f):
+        r(r_), g(g_), b(b_), a(a_){}
 
         float* toArray() { return &r; }
 
         [[nodiscard]] const float* toArray() const { return &r; }
+
+        bool operator==(const Color& other) const {
+            return almostEqual(r, other.r) &&
+                almostEqual(g, other.g) &&
+                almostEqual(b, other.b) &&
+                almostEqual(a, other.a);
+        }
+
+        bool operator!=(const Color &other) const {
+            return !(*this == other);
+        }
     };
 
 #pragma pack(pop)

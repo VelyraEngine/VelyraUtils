@@ -44,7 +44,6 @@ set(velyra_utils_src
     src/CpuFeatures.cpp
 
     src/Types/SymbolicTypes.cpp
-    src/Types/Color.cpp
 
     src/Threading/Worker.cpp
     src/Threading/ThreadPool.cpp
@@ -63,6 +62,7 @@ set(velyra_utils_test_src
     test/TestVelyraEnum.cpp
     test/TestConcepts.cpp
     test/TestTypeTraits.cpp
+    test/TestMath.cpp
 
     test/Types/TestSymbolicTypes.cpp
 
