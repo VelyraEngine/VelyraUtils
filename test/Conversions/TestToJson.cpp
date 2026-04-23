@@ -13,18 +13,6 @@ struct NoConversionData {
     int a = 0;
 };
 
-struct ConversionData {
-    int b = 0;
-    std::string c = "poeder";
-
-    nlohmann::json toJson() const {
-        nlohmann::json j;
-        j["b"] = b;
-        j["c"] = c;
-        return j;
-    }
-};
-
 TEST_F(TestToJson, BasicTypes) {
     EXPECT_EQ(toJson<int>(5).get<int>(), 5);
     EXPECT_EQ(toJson<double>(3.14).get<double>(), 3.14);

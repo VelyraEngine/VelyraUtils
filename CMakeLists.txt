@@ -50,7 +50,7 @@ set(velyra_utils_src
 )
 
 add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
-vl_target_set_compile_flags(VelyraUtils)
+vl_configure_target(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
 target_link_libraries(VelyraUtils PUBLIC spdlog::spdlog nlohmann_json::nlohmann_json)
 
@@ -85,7 +85,5 @@ if (BUILD_TESTING)
     add_executable(TestVelyraUtils ${velyra_utils_test_src})
     target_include_directories(TestVelyraUtils PUBLIC include)
     target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils GTest::gtest GTest::gtest_main)
-    add_test(NAME CTestVelyraUtils COMMAND ${PROOT} $<TARGET_FILE:TestVelyraUtils>)
-    set_tests_properties(CTestVelyraUtils PROPERTIES
-        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
+    vl_configure_test_target(TestVelyraUtils)
 endif ()

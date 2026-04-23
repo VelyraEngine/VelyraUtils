@@ -9,20 +9,6 @@ using namespace Velyra::Utils;
 
 class TestFromJson : public ::testing::Test {};
 
-struct ConversionData {
-    int b = 0;
-    std::string c = "poeder";
-
-    void fromJson(const nlohmann::json& j) {
-        b = j.at("b").get<int>();
-        c = j.at("c").get<std::string>();
-    }
-
-    bool operator==(const ConversionData& other) const {
-        return b == other.b && c == other.c;
-    }
-};
-
 TEST_F(TestFromJson, BasicTypes) {
     const nlohmann::json j = 5;
     EXPECT_EQ(fromJson<int>(j), 5);
