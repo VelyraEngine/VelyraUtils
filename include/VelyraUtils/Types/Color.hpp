@@ -1,10 +1,9 @@
 #pragma once
 
+#include <VelyraUtils/PlatformDetection.hpp>
 #include <VelyraUtils/Math.hpp>
 
 namespace Velyra::Utils {
-
-#pragma pack(push, 1)
 
     struct VL_API Color {
         float r = 0.0f;
@@ -33,7 +32,5 @@ namespace Velyra::Utils {
             return !(*this == other);
         }
     };
-
-#pragma pack(pop)
 
 }
