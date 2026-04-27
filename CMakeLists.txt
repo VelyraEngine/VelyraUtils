@@ -86,4 +86,10 @@ if (BUILD_TESTING)
     target_include_directories(TestVelyraUtils PUBLIC include)
     target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils GTest::gtest GTest::gtest_main)
     vl_configure_test_target(TestVelyraUtils)
+
+    add_coverage_target(
+        TARGET_NAME TestVelyraUtils
+        COVERAGE_NAME coverage
+        EXECUTABLE TestVelyraUtils
+    )
 endif ()

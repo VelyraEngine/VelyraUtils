@@ -22,6 +22,7 @@ TEST_F(TestSymbolicTypes, GetTypeSize) {
     EXPECT_EQ(getTypeSize(VL_FLOAT16), 2);
     EXPECT_EQ(getTypeSize(VL_FLOAT32), 4);
     EXPECT_EQ(getTypeSize(VL_FLOAT64), 8);
+    EXPECT_EQ(getTypeSize(VL_TYPE_MAX_VALUE), 0);
 }
 
 TEST_F(TestSymbolicTypes, GetTypeSizeScalar) {
