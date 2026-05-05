@@ -23,6 +23,7 @@ set(velyra_utils_headers
     include/VelyraUtils/DevUtils/Conditions.hpp
     include/VelyraUtils/DevUtils/JsonSerializer.hpp
     include/VelyraUtils/DevUtils/Fmt.hpp
+    include/VelyraUtils/DevUtils/CartesianProduct.hpp
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
@@ -68,6 +69,7 @@ set(velyra_utils_test_src
 
     # test/DevUtils/TestConditions.cpp
     test/DevUtils/TestJsonSerializer.cpp
+    test/DevUtils/TestCartesianProduct.cpp
 
     # test/Threading/TestThreading.cpp
 
