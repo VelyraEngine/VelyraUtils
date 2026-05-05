@@ -24,6 +24,7 @@ set(velyra_utils_headers
     include/VelyraUtils/DevUtils/JsonSerializer.hpp
     include/VelyraUtils/DevUtils/Fmt.hpp
     include/VelyraUtils/DevUtils/CartesianProduct.hpp
+    include/VelyraUtils/DevUtils/PrettyTypeFormatter.hpp
 
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
@@ -45,6 +46,8 @@ set(velyra_utils_src
     src/CpuFeatures.cpp
 
     src/Types/SymbolicTypes.cpp
+
+    src/DevUtils/PrettyTypeFormatter.cpp
 
     src/Threading/Worker.cpp
     src/Threading/ThreadPool.cpp
