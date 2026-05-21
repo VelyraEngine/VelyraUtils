@@ -10,16 +10,10 @@ namespace Velyra {
 
     static constexpr std::string_view STRING_FORMAT = "%Y-%m-%dT%H:%M:%S";
 
-    using Duration = std::chrono::duration<double, std::milli>;
-    using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock, Duration>;
-    using SystemTimePoint = std::chrono::system_clock::time_point;
-    using SystemDuration = std::chrono::system_clock::duration;
+    using Duration = std::chrono::duration<double>;
+    using TimePoint = std::chrono::time_point<std::chrono::system_clock, Duration>;
 
     inline TimePoint getTime(){
-        return std::chrono::high_resolution_clock::now();
-    }
-
-    inline SystemTimePoint getSystemTime() {
         return std::chrono::system_clock::now();
     }
 

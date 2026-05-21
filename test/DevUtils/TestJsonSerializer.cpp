@@ -47,7 +47,7 @@ TEST_F(TestJsonSerializer, EnumType) {
 }
 
 struct TimeSerializer {
-    TimePoint timestamp = timeFromEpoch(1700000000000.0); // 2024-11-14T22:13:20Z
+    TimePoint timestamp = timeFromEpoch(1700000000.0); // 2023-11-14T22:13:20Z (seconds since epoch)
     Duration duration = 2.0s;
 
     VL_GENERATE_JSON_SERIALIZER(TimeSerializer, timestamp, duration)

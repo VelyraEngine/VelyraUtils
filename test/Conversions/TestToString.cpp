@@ -21,6 +21,6 @@ TEST_F(TestToString, VlEnum) {
 }
 
 TEST_F(TestToString, TimePoint) {
-    const TimePoint tp = timeFromEpoch(1700000000000.0); // 2024-11-14T22:13:20Z
+    const TimePoint tp = timeFromEpoch(1700000000.0); // 2023-11-14T22:13:20Z (seconds since epoch)
     EXPECT_EQ(toString(tp), "2023-11-14T22:13:20");
 }

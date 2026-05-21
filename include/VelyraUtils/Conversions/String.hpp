@@ -16,28 +16,18 @@ namespace Velyra::Utils {
             return _toString(value);
         }
         else if constexpr (std::is_same_v<T, TimePoint>) {
-            // Convert high_resolution_clock::time_point -> system_clock::time_point
-            auto sys_duration = std::chrono::duration_cast<std::chrono::system_clock::duration>(
-                value.time_since_epoch()
-            );
-            std::chrono::system_clock::time_point sys_tp(sys_duration);
+            using namespace std::chrono;
+            auto sys_time = floor<seconds>(time_point_cast<system_clock::duration>(value));
 
-            // Convert to time_t for formatting
-            std::time_t tt = std::chrono::system_clock::to_time_t(sys_tp);
+            // convert to time_t
+            std::time_t t = system_clock::to_time_t(sys_time);
 
-            // Convert to UTC tm
-            std::tm tm{};
-#if defined(VL_PLATFORM_WINDOWS)
-            gmtime_s(&tm, &tt);  // Windows
-#else
-            gmtime_r(&tt, &tm);  // POSIX
-#endif
+            // UTC
+            std::tm tm = *std::gmtime(&t);
 
-            // Format string
-            char buf[64];
-            std::strftime(buf, sizeof(buf), STRING_FORMAT.data(), &tm);
-
-            return std::string(buf);
+            std::ostringstream oss;
+            oss << std::put_time(&tm, STRING_FORMAT.data());
+            return oss.str();
         }
         else if constexpr (std::is_same_v<T, Duration>) {
             return std::to_string(value.count());
@@ -60,18 +50,37 @@ namespace Velyra::Utils {
             return _fromString<T>(str);
         }
         else if constexpr (std::is_same_v<T, TimePoint>) {
-            std::tm time_info = {};
-            std::istringstream ss(str);
-            ss >> std::get_time(&time_info, STRING_FORMAT.data());
-            if (ss.fail()) {
-                VL_THROW("Invalid time format: {}. Expected format: {}", str, STRING_FORMAT);
+            using namespace std::chrono;
+
+            std::tm tm{};
+            char sep;
+            double fractional_seconds = 0.0;
+
+            std::istringstream iss(str);
+            iss >> std::get_time(&tm, STRING_FORMAT.data());
+
+            if (!iss)
+                throw std::invalid_argument("Invalid time format");
+
+            // Read fractional part if present
+            if (iss.peek() == '.')
+            {
+                iss >> sep >> fractional_seconds;
             }
+
 #if defined(VL_PLATFORM_WINDOWS)
-            const std::time_t tt = _mkgmtime(&time_info);
+            std::time_t tt = _mkgmtime(&tm); // UTC
 #else
-            const std::time_t tt = timegm(&time_info); // Parsed in Universal Time
+            std::time_t tt = timegm(&tm);    // UTC
 #endif
-            return TimePoint(std::chrono::duration_cast<TimePoint::duration>(std::chrono::system_clock::from_time_t(tt).time_since_epoch()));
+
+            if (tt == -1)
+                throw std::invalid_argument("Invalid time value");
+
+            TimePoint tp = time_point_cast<Duration>(system_clock::from_time_t(tt));
+
+            tp += Duration{fractional_seconds};
+            return tp;
         }
         else if constexpr (std::is_same_v<T, Duration>) {
             return Duration(std::stod(str));
