@@ -84,12 +84,10 @@ set(velyra_utils_test_src
     test/Conversions/TestToString.cpp
 )
 
-if (BUILD_TESTING)
-    vl_fetch_gtest()
-
+if (VL_BUILD_TESTING)
     add_executable(TestVelyraUtils ${velyra_utils_test_src})
     target_include_directories(TestVelyraUtils PUBLIC include)
-    target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils GTest::gtest GTest::gtest_main)
+    target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils)
     vl_configure_test_target(TestVelyraUtils)
 
     add_coverage_target(
