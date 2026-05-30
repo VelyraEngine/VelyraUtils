@@ -2,92 +2,92 @@
 
 namespace Velyra::Utils {
 
-Worker::Worker() {
-    _thread = std::thread(&Worker::run, this);
-}
-
-Worker::~Worker() {
-    stop();
-    if (_thread.joinable()) {
-        _thread.join();
+    Worker::Worker() {
+        m_Thread = std::thread(&Worker::run, this);
     }
-}
 
-void Worker::submit(std::function<void()> job) {
-    if (!job) {
-        return;
-    }
-    {
-        std::lock_guard<std::mutex> lock(_mutex);
-        _queue.push(std::move(job));
-    }
-    _cv.notify_one();
-}
-
-void Worker::stop() {
-    _stopRequested = true;
-    _cv.notify_one();
-}
-
-void Worker::stopAndClear() {
-    _stopRequested = true;
-    {
-        std::lock_guard<std::mutex> lock(_mutex);
-        while (!_queue.empty()) {
-            _queue.pop();
+    Worker::~Worker() {
+        stop();
+        if (m_Thread.joinable()) {
+            m_Thread.join();
         }
     }
-    _cv.notify_one();
-}
 
-void Worker::wait() {
-    std::unique_lock<std::mutex> lock(_mutex);
-    _waitCv.wait(lock, [this] {
-        return (_queue.empty() && _jobsInFlight == 0) || !_running;
-    });
-}
-
-void Worker::run() {
-    while (_running) {
-        std::function<void()> job;
+    void Worker::submit(std::function<void()> job) {
+        if (!job) {
+            return;
+        }
         {
-            std::unique_lock<std::mutex> lock(_mutex);
-            _cv.wait(lock, [this] {
-                return _stopRequested || !_queue.empty();
-            });
-            if (_stopRequested && _queue.empty()) {
-                _running = false;
-                _cv.notify_all();
-                _waitCv.notify_all();
-                return;
-            }
-            if (!_queue.empty()) {
-                job = std::move(_queue.front());
-                _queue.pop();
-                ++_jobsInFlight;
-            }
+            std::lock_guard<std::mutex> lock(m_Mutex);
+            m_Queue.push(std::move(job));
         }
-        if (job) {
-            try {
-                job();
-            } catch (...) {
-                // Swallow exceptions to keep worker alive; caller can capture in job
-            }
-            --_jobsInFlight;
-            _waitCv.notify_all();
-        }
+        m_Cv.notify_one();
     }
-    _cv.notify_all();
-    _waitCv.notify_all();
-}
 
-bool Worker::isRunning() const {
-    return _running.load();
-}
+    void Worker::stop() {
+        m_StopRequested = true;
+        m_Cv.notify_one();
+    }
 
-Size Worker::pendingCount() const {
-    std::lock_guard<std::mutex> lock(_mutex);
-    return _queue.size();
-}
+    void Worker::stopAndClear() {
+        m_StopRequested = true;
+        {
+            std::lock_guard<std::mutex> lock(m_Mutex);
+            while (!m_Queue.empty()) {
+                m_Queue.pop();
+            }
+        }
+        m_Cv.notify_one();
+    }
+
+    void Worker::wait() {
+        std::unique_lock<std::mutex> lock(m_Mutex);
+        m_WaitCv.wait(lock, [this] {
+            return (m_Queue.empty() && m_JobsInFlight == 0) || !m_Running;
+        });
+    }
+
+    void Worker::run() {
+        while (m_Running) {
+            std::function<void()> job;
+            {
+                std::unique_lock<std::mutex> lock(m_Mutex);
+                m_Cv.wait(lock, [this] {
+                    return m_StopRequested || !m_Queue.empty();
+                });
+                if (m_StopRequested && m_Queue.empty()) {
+                    m_Running = false;
+                    m_Cv.notify_all();
+                    m_WaitCv.notify_all();
+                    return;
+                }
+                if (!m_Queue.empty()) {
+                    job = std::move(m_Queue.front());
+                    m_Queue.pop();
+                    ++m_JobsInFlight;
+                }
+            }
+            if (job) {
+                try {
+                    job();
+                } catch (...) {
+                    // Swallow exceptions to keep worker alive; caller can capture in job
+                }
+                --m_JobsInFlight;
+                m_WaitCv.notify_all();
+            }
+        }
+        m_Cv.notify_all();
+        m_WaitCv.notify_all();
+    }
+
+    bool Worker::isRunning() const {
+        return m_Running.load();
+    }
+
+    Size Worker::pendingCount() const {
+        std::lock_guard<std::mutex> lock(m_Mutex);
+        return m_Queue.size();
+    }
 
 } // namespace Velyra::Utils
