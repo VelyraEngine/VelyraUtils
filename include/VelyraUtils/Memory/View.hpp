@@ -50,6 +50,10 @@ namespace Velyra {
             return m_View != nullptr;
         }
 
+        T& operator*() const {
+            return *m_View;
+        }
+
     private:
         T* m_View = nullptr;
     };
