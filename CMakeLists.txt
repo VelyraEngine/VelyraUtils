@@ -10,6 +10,7 @@ vl_fetch_nlohmann_json()
 set(velyra_utils_headers
     include/VelyraUtils/VelyraUtils.hpp
     include/VelyraUtils/Logging.hpp
+    include/VelyraUtils/LoggingFwd.hpp
     include/VelyraUtils/VelyraEnum.hpp
     include/VelyraUtils/ExportUtils.hpp
     include/VelyraUtils/TypeTraits.hpp
@@ -29,6 +30,7 @@ set(velyra_utils_headers
     include/VelyraUtils/Types/Types.hpp
     include/VelyraUtils/Types/SymbolicTypes.hpp
     include/VelyraUtils/Types/Color.hpp
+    include/VelyraUtils/Types/KeyVector.hpp
 
     include/VelyraUtils/Clock/Clock.hpp
 
@@ -69,6 +71,7 @@ set(velyra_utils_test_src
     test/TestMath.cpp
 
     test/Types/TestSymbolicTypes.cpp
+    test/Types/TestKeyVector.cpp
 
     # test/DevUtils/TestConditions.cpp
     test/DevUtils/TestJsonSerializer.cpp

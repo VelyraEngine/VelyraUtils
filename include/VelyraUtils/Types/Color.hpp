@@ -1,6 +1,6 @@
 #pragma once
 
-#include <VelyraUtils/PlatformDetection.hpp>
+#include <VelyraUtils/ExportUtils.hpp>
 #include <VelyraUtils/Math.hpp>
 
 namespace Velyra::Utils {
