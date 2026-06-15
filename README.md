@@ -16,6 +16,12 @@ To enjoy faster builds, consider installing the following packages as well.
 sudo apt install ninja-build ccache mold
 ```
 
+To configure CMake faster, also install these packages
+```bash
+sudo apt install libgtest-dev libspdlog-dev nlohmann-json3-dev
+```
+*Note*: These are not mandatory as CMake will fetch them automatically with `FetchContent`, but using system wide packages will be much faster.
+
 ### Windows 11
 Install MSVC using the installer found on the microsoft webpage.
 
