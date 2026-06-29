@@ -20,7 +20,7 @@ std::string prettyTypeName(const std::type_info& ti) {
 #elif defined(VL_COMPILER_MSVC)
 
 std::string prettyTypeName(const std::type_info& ti) {
-    VL_NOT_IMPLEMENTED()
+    VL_NOT_IMPLEMENTED();
 }
 
 #endif
