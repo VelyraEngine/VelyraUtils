@@ -87,7 +87,7 @@ set(velyra_utils_test_src
     test/Conversions/TestToString.cpp
 )
 
-if (VL_BUILD_TESTING)
+if (BUILD_TESTING)
     add_executable(TestVelyraUtils ${velyra_utils_test_src})
     target_include_directories(TestVelyraUtils PUBLIC include)
     target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils)

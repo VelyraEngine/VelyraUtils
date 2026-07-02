@@ -5,7 +5,6 @@
 #include <VelyraUtils/ExportUtils.hpp>
 
 #include <VelyraUtils/Types/Types.hpp>
-#include <VelyraUtils/Types/SymbolicTypes.hpp>
 
 #include <VelyraUtils/Memory/View.hpp>
 

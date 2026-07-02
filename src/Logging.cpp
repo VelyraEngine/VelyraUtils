@@ -1,5 +1,6 @@
 #include <VelyraUtils/Logging.hpp>
 
+#include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_sinks.h>
 #include <VelyraUtils/Types/Types.hpp>
 
