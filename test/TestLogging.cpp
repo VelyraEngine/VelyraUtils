@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <VelyraUtils/Logging.hpp>
+#include <spdlog/spdlog.h>
 #include <VelyraUtils/CpuFeatures.hpp>
 
 using namespace Velyra;
