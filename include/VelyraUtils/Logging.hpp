@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <spdlog/fwd.h>
+#include <spdlog/spdlog.h>
 
 namespace Velyra::Utils {
 
