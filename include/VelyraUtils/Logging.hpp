@@ -11,3 +11,13 @@ namespace Velyra::Utils {
 
 }
 
+#if defined(SPDLOG_LOGGER_WARN)
+
+#define SPDLOG_LOGGER_PERFORMANCE(logger, ...) SPDLOG_LOGGER_WARN(logger, "[PERFORMANCE]: " __VA_ARGS__)
+
+#else
+
+#define SPDLOG_LOGGER_PERFORMANCE(logger, ...) (void)0
+
+#endif
+

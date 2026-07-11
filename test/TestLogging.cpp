@@ -24,3 +24,12 @@ TEST_F(TestLogging, DetectCpuFeatures) {
     SPDLOG_INFO("CPU Features - SSE2: {}, AVX: {}, AVX2: {}", sse2, avx, avx2);
 }
 
+TEST_F(TestLogging, PerformanceLogMacro) {
+    const std::string loggerName = "TST-PERF";
+
+    Utils::LogPtr logger = Utils::getLogger(loggerName);
+    ASSERT_NE(logger, nullptr);
+
+    SPDLOG_LOGGER_PERFORMANCE(logger, "This is a performance log message.");
+}
+
