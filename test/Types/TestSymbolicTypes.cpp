@@ -8,6 +8,19 @@ class TestSymbolicTypes: public ::testing::Test {
 
 };
 
+TEST_F(TestSymbolicTypes, TypedGetType){
+    EXPECT_EQ(getVlType<U8>(), VL_UINT8);
+    EXPECT_EQ(getVlType<I8>(), VL_INT8);
+    EXPECT_EQ(getVlType<U16>(), VL_UINT16);
+    EXPECT_EQ(getVlType<I16>(), VL_INT16);
+    EXPECT_EQ(getVlType<U32>(), VL_UINT32);
+    EXPECT_EQ(getVlType<I32>(), VL_INT32);
+    EXPECT_EQ(getVlType<U64>(), VL_UINT64);
+    EXPECT_EQ(getVlType<I64>(), VL_INT64);
+    EXPECT_EQ(getVlType<float>(), VL_FLOAT32);
+    EXPECT_EQ(getVlType<double>(), VL_FLOAT64);
+}
+
 TEST_F(TestSymbolicTypes, GetTypeSize) {
     EXPECT_EQ(getTypeSize(VL_TYPE_NONE), 0);
     EXPECT_EQ(getTypeSize(VL_VOID), 0);

@@ -105,6 +105,21 @@ VL_ENUM(VL_SCALAR_TYPE, U8,
 
 namespace Velyra::Utils {
 
+    template<typename T>
+    VL_TYPE getVlType(){
+        if constexpr (std::is_same_v<T, U8>) { return VL_UINT8; }
+        else if constexpr (std::is_same_v<T, I8>) { return VL_INT8; }
+        else if constexpr (std::is_same_v<T, U16>) { return VL_UINT16; }
+        else if constexpr (std::is_same_v<T, I16>) { return VL_INT16; }
+        else if constexpr (std::is_same_v<T, U32>) { return VL_UINT32; }
+        else if constexpr (std::is_same_v<T, I32>) { return VL_INT32; }
+        else if constexpr (std::is_same_v<T, U64>) { return VL_UINT64; }
+        else if constexpr (std::is_same_v<T, I64>) { return VL_INT64; }
+        else if constexpr (std::is_same_v<T, float>) { return VL_FLOAT32; }
+        else if constexpr (std::is_same_v<T, double>) { return VL_FLOAT64; }
+        else { return VL_TYPE_MAX_VALUE; }
+    }
+
     /**
      * @brief Returns the size of a VL_TYPE in bytes. We expect the same type size as on an X86_64 reference platform
      * @param type
