@@ -1,16 +1,18 @@
 #include <VelyraUtils/CpuFeatures.hpp>
 
-#if defined(VL_COMPILER_MSVC)
-    #include <intrin.h>
-#elif defined(VL_COMPILER_GCC) || defined(VL_COMPILER_CLANG)
-    #include <cpuid.h>
+#if defined(VL_ARCH_X86_64)
+    #if defined(VL_COMPILER_MSVC)
+        #include <intrin.h>
+    #elif defined(VL_COMPILER_GCC) || defined(VL_COMPILER_CLANG)
+        #include <cpuid.h>
+    #endif
 #endif
 
 namespace Velyra::Utils {
 
     CpuFeatures detectCpuFeatures() {
         CpuFeatures features;
-
+#if defined(VL_ARCH_X86_64)
 #if defined(VL_COMPILER_MSVC)
         int cpuInfo[4];
         __cpuid(cpuInfo, 1);
@@ -32,6 +34,8 @@ namespace Velyra::Utils {
         __cpuid_count(7, 0, eax, ebx, ecx, edx);
         features.avx2 = ebx & (1 << 5);
 #endif
+#endif
+
         return features;
     }
 
