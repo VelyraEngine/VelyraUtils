@@ -7,7 +7,7 @@ vl_fetch_spdlog()
 
 vl_fetch_nlohmann_json()
 
-set(velyra_utils_headers
+set(VELYRA_UTILS_HEADERS
     include/VelyraUtils/VelyraUtils.hpp
     include/VelyraUtils/Logging.hpp
     include/VelyraUtils/LoggingFwd.hpp
@@ -18,6 +18,7 @@ set(velyra_utils_headers
     include/VelyraUtils/PlatformDetection.hpp
     include/VelyraUtils/Math.hpp
     include/VelyraUtils/CpuFeatures.hpp
+    include/VelyraUtils/Random.hpp
 
     include/VelyraUtils/DevUtils/MacroExpansion.hpp
     include/VelyraUtils/DevUtils/PrivateMemberGetter.hpp
@@ -43,9 +44,10 @@ set(velyra_utils_headers
     include/VelyraUtils/Conversions/String.hpp
 )
 
-set(velyra_utils_src
+set(VELYRA_UTILS_SRC
     src/Logging.cpp
     src/CpuFeatures.cpp
+    src/Random.cpp
 
     src/Types/SymbolicTypes.cpp
 
@@ -55,12 +57,12 @@ set(velyra_utils_src
     src/Threading/ThreadPool.cpp
 )
 
-add_library(VelyraUtils STATIC ${velyra_utils_headers} ${velyra_utils_src})
+add_library(VelyraUtils STATIC ${VELYRA_UTILS_HEADERS} ${VELYRA_UTILS_SRC})
 vl_configure_target(VelyraUtils)
 target_include_directories(VelyraUtils PUBLIC include)
 target_link_libraries(VelyraUtils PUBLIC spdlog::spdlog nlohmann_json::nlohmann_json)
 
-set(velyra_utils_test_src
+set(VELYRA_UTILS_TEST_SRC
     test/Utils.hpp
 
     test/TestLogging.cpp
@@ -88,7 +90,7 @@ set(velyra_utils_test_src
 )
 
 if (BUILD_TESTING)
-    add_executable(TestVelyraUtils ${velyra_utils_test_src})
+    add_executable(TestVelyraUtils ${VELYRA_UTILS_TEST_SRC})
     target_include_directories(TestVelyraUtils PUBLIC include)
     target_link_libraries(TestVelyraUtils PUBLIC VelyraUtils)
     vl_configure_test_target(TestVelyraUtils)
