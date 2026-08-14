@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include <VelyraUtils/Logging.hpp>
-#include <spdlog/spdlog.h>
+#include <VelyraUtils/Logging/Logging.hpp>
 #include <VelyraUtils/CpuFeatures.hpp>
+#include <spdlog/spdlog.h>
 
 using namespace Velyra;
 
@@ -33,3 +33,6 @@ TEST_F(TestLogging, PerformanceLogMacro) {
     SPDLOG_LOGGER_PERFORMANCE(logger, "This is a performance log message.");
 }
 
+TEST_F(TestLogging, FormatFileSystemPath) {
+    SPDLOG_INFO("Formatted file system path: {}", fs::current_path());
+}

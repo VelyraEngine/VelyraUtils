@@ -9,8 +9,6 @@ vl_fetch_nlohmann_json()
 
 set(VELYRA_UTILS_HEADERS
     include/VelyraUtils/VelyraUtils.hpp
-    include/VelyraUtils/Logging.hpp
-    include/VelyraUtils/LoggingFwd.hpp
     include/VelyraUtils/VelyraEnum.hpp
     include/VelyraUtils/ExportUtils.hpp
     include/VelyraUtils/TypeTraits.hpp
@@ -42,10 +40,16 @@ set(VELYRA_UTILS_HEADERS
 
     include/VelyraUtils/Conversions/Json.hpp
     include/VelyraUtils/Conversions/String.hpp
+
+    include/VelyraUtils/IO/FileSystemUtils.hpp
+    include/VelyraUtils/IO/IncludeFileSystem.hpp
+
+    include/VelyraUtils/Logging/Logging.hpp
+    include/VelyraUtils/Logging/LoggingFwd.hpp
+    include/VelyraUtils/Logging/Formatters.hpp
 )
 
 set(VELYRA_UTILS_SRC
-    src/Logging.cpp
     src/CpuFeatures.cpp
     src/Random.cpp
 
@@ -55,6 +59,10 @@ set(VELYRA_UTILS_SRC
 
     src/Threading/Worker.cpp
     src/Threading/ThreadPool.cpp
+
+    src/IO/FileSystemUtils.cpp
+
+    src/Logging/Logging.cpp
 )
 
 add_library(VelyraUtils STATIC ${VELYRA_UTILS_HEADERS} ${VELYRA_UTILS_SRC})
@@ -65,7 +73,6 @@ target_link_libraries(VelyraUtils PUBLIC spdlog::spdlog nlohmann_json::nlohmann_
 set(VELYRA_UTILS_TEST_SRC
     test/Utils.hpp
 
-    test/TestLogging.cpp
     test/TestvelyraUtils.cpp
     test/TestVelyraEnum.cpp
     test/TestConcepts.cpp
@@ -87,6 +94,8 @@ set(VELYRA_UTILS_TEST_SRC
     test/Conversions/TestFromJson.cpp
     test/Conversions/TestFromString.cpp
     test/Conversions/TestToString.cpp
+
+    test/Logging/TestLogging.cpp
 )
 
 if (BUILD_TESTING)

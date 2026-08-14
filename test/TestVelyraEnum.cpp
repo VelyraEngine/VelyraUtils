@@ -1,5 +1,5 @@
+#include <VelyraUtils/Logging/Logging.hpp>
 #include <gtest/gtest.h>
-#include <VelyraUtils/Logging.hpp>
 
 #include "Utils.hpp"
 

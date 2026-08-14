@@ -1,7 +1,8 @@
 #pragma once
 
-#include <memory>
 #include <spdlog/spdlog.h>
+#include <VelyraUtils/Logging/Formatters.hpp>
+#include <VelyraUtils/Logging/LoggingFwd.hpp>
 
 namespace Velyra::Utils {
 

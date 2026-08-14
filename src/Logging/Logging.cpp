@@ -1,8 +1,8 @@
-#include <VelyraUtils/Logging.hpp>
+#include <VelyraUtils/Logging/Logging.hpp>
 
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_sinks.h>
 #include <VelyraUtils/Types/Types.hpp>
+#include <spdlog/sinks/stdout_sinks.h>
+#include <spdlog/spdlog.h>
 
 namespace Velyra::Utils {
 

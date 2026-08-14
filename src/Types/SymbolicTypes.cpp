@@ -1,5 +1,5 @@
+#include <VelyraUtils/Logging/Logging.hpp>
 #include <VelyraUtils/Types/SymbolicTypes.hpp>
-#include <VelyraUtils/Logging.hpp>
 
 namespace Velyra::Utils {
 
