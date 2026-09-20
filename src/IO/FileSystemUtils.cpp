@@ -27,4 +27,23 @@ namespace Velyra::Utils::IO {
         }
     }
 
+    void writeJson(const fs::path& path, const nlohmann::json& json, bool prettyPrint) {
+        const LogPtr logger = getLogger("VL-IO");
+
+        std::ofstream file(path);
+        if (!file.is_open()) {
+            SPDLOG_LOGGER_ERROR(logger, "Failed to open file for writing: {}", path.string());
+            return;
+        }
+        try {
+            if (prettyPrint) {
+                file << json.dump(4); // 4 spaces for indentation
+            } else {
+                file << json.dump();
+            }
+        } catch (const std::exception& e) {
+            SPDLOG_LOGGER_ERROR(logger, "Failed to write JSON to file '{}': {}", path.string(), e.what());
+        }
+    }
+
 }
