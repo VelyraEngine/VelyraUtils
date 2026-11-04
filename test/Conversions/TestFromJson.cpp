@@ -82,3 +82,12 @@ TEST_F(TestFromJson, Maps) {
     const auto resultUnordered = fromJson<std::unordered_map<std::string, int>>(j);
     EXPECT_EQ(resultUnordered, expectedUnordered);
 }
+
+TEST_F(TestFromJson, NlohmannJsonType) {
+    const nlohmann::json j = {
+        {"key1", "value1"},
+        {"key2", 42}
+    };
+    const auto result = fromJson<nlohmann::json>(j);
+    EXPECT_EQ(result, j);
+}

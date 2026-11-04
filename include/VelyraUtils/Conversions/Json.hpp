@@ -11,7 +11,10 @@ namespace Velyra::Utils {
 
     template<typename T>
     nlohmann::json toJson(const T& value) {
-        if constexpr (IsVlEnum<T>) {
+        if constexpr (std::is_same_v<T, nlohmann::json> || std::is_same_v<T, const nlohmann::json&>) {
+            return value;
+        }
+        else if constexpr (IsVlEnum<T>) {
             return toString(value);
         }
         else if constexpr (std::is_same_v<T, TimePoint>) {
@@ -48,7 +51,10 @@ namespace Velyra::Utils {
 
     template<typename T>
     T fromJson(const nlohmann::json& json) {
-        if constexpr (IsVlEnum<T>) {
+        if constexpr (std::is_same_v<T, nlohmann::json> || std::is_same_v<T, const nlohmann::json&>) {
+            return json;
+        }
+        else if constexpr (IsVlEnum<T>) {
             return fromString<T>(json.get<std::string>());
         }
         else if constexpr (std::is_same_v<T, TimePoint>) {

@@ -67,3 +67,12 @@ TEST_F(TestToJson, Maps) {
     const nlohmann::json converted = toJson<std::map<std::string, int>>(msi);
     EXPECT_EQ(converted, msij);
 }
+
+TEST_F(TestToJson, NlohmannJsonType) {
+    const nlohmann::json j = {
+        {"key1", "value1"},
+        {"key2", 42}
+    };
+    const auto result = toJson<nlohmann::json>(j);
+    EXPECT_EQ(result, j);
+}
