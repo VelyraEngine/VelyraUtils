@@ -20,7 +20,12 @@ namespace Velyra::Utils::IO {
             return std::nullopt;
         }
         try {
-            return nlohmann::json::parse(file);
+            auto json =  nlohmann::json::parse(file);
+            if (json.is_discarded() || !json.is_object()) {
+                SPDLOG_LOGGER_ERROR(logger, "JSON in file '{}' is not valid or not an object", path.string());
+                return std::nullopt;
+            }
+            return std::make_optional(std::move(json));
         } catch (const nlohmann::json::parse_error& e) {
             SPDLOG_LOGGER_ERROR(logger, "Failed to parse JSON from file '{}': {}", path.string(), e.what());
             return std::nullopt;
